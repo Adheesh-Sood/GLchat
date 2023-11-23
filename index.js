@@ -18,6 +18,10 @@
    measurementId: "G-59VLDR3YDJ"
  };
  // Initialize Firebase
+const now = new Date();
+const dateStr = now.toLocaleDateString();
+const timeStr = now.toLocaleTimeString();
+
  const app = initializeApp(firebaseConfig);
  const analytics = getAnalytics(app);
  const database = getDatabase();
@@ -26,9 +30,9 @@
     const db = getDatabase();
 const postListRef = ref(db, 'posts/userTxt');
 const newPostRef = push(postListRef);
-set(newPostRef, {
-    message:" Date" + Date() + ': ' + document.getElementById('userText').value,
 
+set(newPostRef, {
+  message: "Date: " + dateStr + ", Time: " + timeStr + ': ' +  document.getElementById('name').value +' says ' +   document.getElementById('userText').value,
 });
 
  })
@@ -50,6 +54,6 @@ onValue(dbRef, (snapshot) => {
 });
 
 
-document.getElementById('refresh').addEventListener('click' , ()=>{
+document.getElementById('subb').addEventListener('click' , ()=>{
   location.reload()
 })
